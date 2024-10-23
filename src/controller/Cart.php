@@ -62,7 +62,7 @@ class Cart extends PageController
 
         if (!$this->request->isAjax()) {
             if (($this->request->Param('action') == 'complete') && empty(eCommerce::get_last_processed_cart($this->request->param('id')))) {
-                return $this->httpError(404);
+                return $this->httpError(406);
             }
 
             return parent::handleAction($request, $action);
