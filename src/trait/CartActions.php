@@ -21,6 +21,7 @@ use Cita\eCommerce\Model\SubscriptionVariant;
 use Leochenftw\Util;
 use SilverStripe\Core\Convert;
 use SilverStripe\Core\ClassInfo;
+use SilverStripe\Security\Security;
 
 trait CartActions
 {
@@ -265,7 +266,7 @@ trait CartActions
             $cart->UpdateAmountWeight();
 
             $checkout   =   [
-                'email'             =>  $cart->Email ?: (Member::currentUser() ? (strpos(Member::currentUser()->Email, '@') !== false ? Member::currentUser()->Email : null) : null),
+                'email'             =>  $cart->Email ?: (Security::getCurrentUser() ? (strpos(Security::getCurrentUser()->Email, '@') !== false ? Security::getCurrentUser()->Email : null) : null),
                 'amount'            =>  (float) $cart->TotalAmount,
                 'amounts'           =>  [
                                             'discountable_taxable' => $cart->DiscountableTaxable,

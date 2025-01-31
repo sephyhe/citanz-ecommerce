@@ -102,7 +102,7 @@ class eCommerce
 
         if (!$cart) return null;
 
-        if ($customer = Member::currentUser()) {
+        if ($customer = Security::getCurrentUser()) {
             if ($cart->CustomerID == $customer->ID || $customer->inGroup('administrators')) {
                 return $cart;
             }

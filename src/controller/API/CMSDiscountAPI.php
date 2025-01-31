@@ -8,6 +8,7 @@ use Cita\eCommerce\Model\Product;
 use Cita\eCommerce\Model\Variant;
 use SilverStripe\Versioned\Versioned;
 use Cita\eCommerce\Model\Discount;
+use SilverStripe\Security\Security;
 
 class CMSDiscountAPI extends Controller
 {
@@ -23,7 +24,7 @@ class CMSDiscountAPI extends Controller
 
     protected function handleAction($request, $action)
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if (!$member || !$member->inGroup('administrators')) {
             return $this->httpError(403, 'You do not have permission!');

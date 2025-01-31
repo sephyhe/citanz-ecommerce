@@ -185,7 +185,7 @@ class Order extends DataObject implements \JsonSerializable
         parent::populateDefaults();
 
         $this->SameBilling  =   true;
-        $member             =   Member::currentUser();
+        $member             =   Security::getCurrentUser();
 
         if (!Environment::isCli()) {
             $cookie = Cookie::get('eCommerceCookie');
@@ -656,9 +656,9 @@ class Order extends DataObject implements \JsonSerializable
             $this->CustomerReference    =   strtoupper(substr($this->MerchantReference, 0, 8));
         }
 
-        if (!$this->Customer()->exists() && Member::currentUser()) {
-            if (Member::currentUser()->ClassName == Customer::class) {
-                $this->CustomerID = Member::currentUser()->ID;
+        if (!$this->Customer()->exists() && Security::getCurrentUser()) {
+            if (Security::getCurrentUser()->ClassName == Customer::class) {
+                $this->CustomerID = Security::getCurrentUser()->ID;
             }
         }
 
