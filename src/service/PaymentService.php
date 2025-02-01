@@ -20,8 +20,9 @@ class PaymentService
 
         $payment = Payment::create()->init($gateway, $amount, 'NZD');
         $payment->OrderID = $order->ID;
-        $payment->setSuccessUrl(Director::absoluteBaseURL() . 'cita-ecommerce/complete/' . $order->ID);
-        $payment->setFailureUrl(Director::absoluteBaseURL() . 'cita-ecommerce/complete/' . $order->ID);
+        $baseURL = rtrim(Director::absoluteBaseURL(), '/');
+        $payment->setSuccessUrl($baseURL . '/cita-ecommerce/complete/' . $order->ID);
+        $payment->setFailureUrl($baseURL . '/cita-ecommerce/complete/' . $order->ID);
         $payment->write();
 
         if ($config = Environment::getEnv($gateway)) {

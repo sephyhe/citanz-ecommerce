@@ -461,8 +461,8 @@ class Order extends DataObject implements \JsonSerializable
                 if (!empty($siteconfig->InvoiceBccEmail)) {
                     $admin_email->setBCC($siteconfig->InvoiceBccEmail);
                 }
-
-                $admin_email->setBody('Hi, <br /><br />There is a new order. Please <a target="_blank" href="' . Director::absoluteBaseURL() .  'admin/orders/Cita-eCommerce-Model-Order/EditForm/field/Cita-eCommerce-Model-Order/item/' . $this->ID . '/edit' . '">click here</a> to view the details. <br /><br />' . $siteconfig->TradingName);
+                $baseURL = rtrim(Director::absoluteBaseURL(), '/');
+                $admin_email->setBody('Hi, <br /><br />There is a new order. Please <a target="_blank" href="' . $baseURL . '/admin/orders/Cita-eCommerce-Model-Order/EditForm/field/Cita-eCommerce-Model-Order/item/' . $this->ID . '/edit' . '">click here</a> to view the details. <br /><br />' . $siteconfig->TradingName);
 
                 $admin_email->send();
             }
