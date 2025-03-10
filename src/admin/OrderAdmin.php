@@ -103,18 +103,18 @@ class OrderAdmin extends ModelAdmin
                     if($this->modelClass == Order::class) {
                         $filter = $config->getComponentByType(GridFieldFilterHeader::class);
                         $context = $filter->getSearchContext($gridField);
-                        $context->getFields()->insertBefore(TextField::create(
+                        $context->getFields()->insertBefore('CustomerReference', TextField::create(
                             'ID',
                             'Order#'
-                        ), 'CustomerReference');
-                        $context->getFields()->insertBefore(TextField::create(
+                        ));
+                        $context->getFields()->insertBefore('Status', TextField::create(
                             'ProductName',
                             'Product'
-                        ), 'Status');
-                        $context->getFields()->insertBefore(CheckboxField::create(
+                        ));
+                        $context->getFields()->insertBefore('Status', CheckboxField::create(
                             'NonPendings',
                             'Non-pendings'
-                        ), 'Status');
+                        ));
                     }
                 }
             }

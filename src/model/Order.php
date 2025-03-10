@@ -1306,7 +1306,7 @@ class Order extends DataObject implements \JsonSerializable
     {
         $cartData = $this->Data;
 
-        if (!empty(trim($cartData['comment']))) {
+        if (!empty($cartData['comment']) && !empty(trim($cartData['comment']))) {
             $cartData['comment'] = '--------------<br />' . nl2br(trim($cartData['comment']));
         }
 
@@ -1332,7 +1332,9 @@ class Order extends DataObject implements \JsonSerializable
         $comment = $this->Comment;
 
         if ($this->hasMethod('extraComment')) {
-            $comment .= !empty(trim($comment)) ? "\n\n" : '';
+            if (!empty($comment) && !empty(trim($comment))) {
+                $comment .= "\n\n";
+            }
             $comment .= $this->extraComment();
         }
 

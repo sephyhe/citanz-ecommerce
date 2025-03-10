@@ -2,8 +2,6 @@
 namespace Cita\eCommerce\Service;
 
 use SilverStripe\Control\Director;
-use SilverStripe\Core\Config\Config;
-use Cita\eCommerce\eCommerce;
 use SilverStripe\Core\Environment;
 use SilverStripe\Omnipay\Model\Payment;
 use SilverStripe\Omnipay\Service\ServiceFactory;
@@ -62,9 +60,9 @@ class PaymentService
                    ->initiate($config);
 
                 return $response->getTargetUrl();
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 error_log($e->getMessage());
-                return $e->getMessage;
+                return $e->getMessage();
             }
         }
 
