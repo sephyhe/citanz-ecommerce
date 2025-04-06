@@ -92,6 +92,7 @@ class OrderAdmin extends ModelAdmin
                         'CommentText' => 'Comment',
                         'PayableTotal' => 'Amount',
                         'Status' => 'Status',
+                        'TrakeStatus' => 'Tracking Status',
                         'Paidat' => 'Paid at'
                     ])->setFieldCasting([
                         'TotalAmount' => 'Currency->Nice',

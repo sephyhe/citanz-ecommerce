@@ -93,6 +93,7 @@ class Order extends DataObject implements \JsonSerializable
         'TrackingNumber'            =>  'Varchar(128)',
         'ShippingCost'              =>  'Currency',
         'Paidat'                    =>  'Datetime',
+        'TrakeStatus'               =>  'Varchar',
     ];
 
     private static $indexes = [
@@ -309,6 +310,7 @@ class Order extends DataObject implements \JsonSerializable
             'Bundles',
             'Variants',
             'Messages',
+            'TrakeStatus',
         ]);
 
         $fields->addFieldToTab(
